@@ -11,7 +11,7 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun calculaIMC_isCorrect_defaultLocale() {
+        assertTrue("Calculo do IMC está certo", MainActivity.calculaIMC(80.0, 1.8, "pt") in 24.69 .. 24.70)
     }
 }

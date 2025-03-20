@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.util.Locale
 import kotlin.math.pow
 
 class MainActivity : AppCompatActivity() {
@@ -75,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
         val peso = etPeso.text.toString().toDouble()
 
-        val imc = peso / altura.pow(2)
+        val imc = calculaIMC(peso, altura, Locale.getDefault().language)
 
         tvResultado.text = "%.2f".format(imc)
 
@@ -83,5 +84,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun btnLimparOnLongClick() {
         Toast.makeText(this, "Limpar tudo", Toast.LENGTH_SHORT).show()
+    }
+
+
+    companion object {
+        fun calculaIMC(peso: Double, altura: Double, locale: String): Double{
+            var imc = peso / altura.pow(2)
+
+            if(locale.equals("en")){ //trabalhando com internacionalização
+                imc = imc * 730
+            }
+            return imc
+        }
     }
 }
